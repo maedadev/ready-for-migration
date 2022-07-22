@@ -2,7 +2,13 @@
 Short description and motivation.
 
 ## Usage
-How to use my plugin.
+
+Add this line to your application's config/routes.rb:
+
+```
+mount Ready::For::Migration::Engine, at: '/'
+
+```
 
 ## Installation
 Add this line to your application's Gemfile:
