@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     ready-for-migration (0.1.0)
-      rails (~> 5.2.8)
+      rails (~> 5.2.0)
 
 GEM
   remote: https://rubygems.org/
