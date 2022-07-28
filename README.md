@@ -7,7 +7,7 @@ This is an Rails Engine that provides an endpoint that responds whether the appl
 Add this line to your Rails application's config/routes.rb:
 
 ```
-mount Ready::For::Migration::Engine, at: '/'
+mount Ready::For::Migration::Engine, at: '/healthz'
 
 ```
 
