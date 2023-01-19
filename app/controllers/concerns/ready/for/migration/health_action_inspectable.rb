@@ -75,9 +75,8 @@ module Ready
           def perform_inspection_with_status_and_random
             return unless status = get_status_value
             return unless value = get_random_value
-             # value == 0 の場合
 
-            if value == 1 || rand(value - 1).tap{|v| } == 0
+            if value == 1 || rand(value - 1) == 0
               head status
             end
           end
