@@ -4,10 +4,7 @@ module Ready
       class Engine < ::Rails::Engine
 
         initializer 'ready-for-migration.initialize_cache' do
-          # When lanched as server, clear cache.
-          if defined? Rails::Server || defined? PhusionPassenger
-            Ready::For::Migration::HealthActionInspectable.cache.clear
-          end
+          Ready::For::Migration::HealthActionInspectable.cache.write(:first_access_time, Time.now)
         end
       end
     end

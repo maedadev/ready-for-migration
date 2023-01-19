@@ -6,8 +6,7 @@ module Ready
       module HealthActionInspectable
 
         def self.cache
-          @cache ||= ActiveSupport::Cache::FileStore.new(
-            Rails.root.join('tmp', 'cache', 'ready-for-migration', 'health_action_inspectable'))
+          @cache ||= ActiveSupport::Cache::MemoryStore.new
         end
 
         def readiness
