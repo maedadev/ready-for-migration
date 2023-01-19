@@ -2,6 +2,7 @@ module Ready
   module For
     module Migration
       class HealthController < ::ActionController::Base
+        prepend HealthActionInspectable
 
         def readiness
           if ApplicationRecord.connection.migration_context.needs_migration?
