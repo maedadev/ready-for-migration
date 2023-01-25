@@ -31,7 +31,7 @@ $ gem install ready-for-migration
 
 ## Simulate Health Check Response
 
-You can simulate health check response by adding specific query parameters to your health check resquests.
+You can simulate health check response by adding specific query parameters to your health check requests.
 
 Here's the pattern we're serving. (values are just an example)
 
