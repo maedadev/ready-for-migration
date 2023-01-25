@@ -33,7 +33,7 @@ $ gem install ready-for-migration
 
 You can simulate health check response by adding specific query parameters to your health check requests.
 
-Here's the pattern we're serving. (values are just an example)
+Here's the pattern we're providing. (values are just an example)
 
 |pattern|behavior|
 |--|--|
