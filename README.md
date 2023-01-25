@@ -29,5 +29,22 @@ Or install it yourself as:
 $ gem install ready-for-migration
 ```
 
+## Simulate Health Check Response
+
+You can simulate health check response by adding specific query parameters to your health check resquests.
+
+Here's the pattern we're serving. (values are just an example)
+
+|pattern|behavior|
+|--|--|
+|No query parameters|health check as usual.|
+|`?status=503`|respond with specified status code.|
+|`?status=503&after=60`|respond with specified status code once specified seconds have passed since the first access with `after`.|
+|`?status=503&sleep=60`|respond with specified status code after sleeping specified seconds.|
+|`?status=503&random=10` |randomly respond with specified status code, once in a specified number as `random`.|
+|`?sleep=60` |health check after sleeping specified seconds.|
+
+NOTE: Other patterns than listed in the above example will be ignored (Same as `No query parameters`).
+
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
