@@ -44,7 +44,8 @@ Here's the pattern we're providing. (values are just an example)
 |`?status=503&random=10` |randomly respond with specified status code, once in a specified number as `random`.|
 |`?sleep=60` |health check after sleeping specified seconds.|
 
-NOTE: Other patterns than listed in the above example will be ignored.
+NOTE: Other patterns than listed in the above example will be ignored.  
+NOTE: "sleep" parameter is disabled in default for avoiding DoS attack. To enabling this, you set environment variables "RFM_ENABLE_SLEEP" as "1".
 
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
