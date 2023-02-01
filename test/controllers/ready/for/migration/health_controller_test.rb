@@ -33,12 +33,21 @@ class Ready::For::Migration::HealthControllerTest < ActionDispatch::IntegrationT
   end
 
   def test_health_action_inspectable_status_and_sleep_parameters
+    Ready::For::Migration::HealthActionInspectable.stubs(:sleep_enabled?).returns(true)
+
     elapsed = measure_elapsed do
       get '/?status=503&sleep=3'
     end
     assert_response 503
+    assert_operator elapsed, :>, 3, "When enabled sleep"
 
-    assert_operator elapsed, :>, 3
+    Ready::For::Migration::HealthActionInspectable.stubs(:sleep_enabled?).returns(false)
+
+    elapsed = measure_elapsed do
+      get '/?status=503&sleep=3'
+    end
+    assert_response 503
+    assert_operator elapsed, :<, 3, "When disabled sleep"
   end
 
   def test_health_action_inspectable_ignored_when_specified_invalid_sleep_value
@@ -83,15 +92,25 @@ class Ready::For::Migration::HealthControllerTest < ActionDispatch::IntegrationT
   end
 
   def test_health_action_inspectable_only_sleep_parameter
+    Ready::For::Migration::HealthActionInspectable.stubs(:sleep_enabled?).returns(true)
+
     elapsed = measure_elapsed do
       get '/?sleep=3'
     end
     assert_response 200
+    assert_operator elapsed, :>, 3, 'When enabled sleep'
 
-    assert_operator elapsed, :>, 3
+    Ready::For::Migration::HealthActionInspectable.stubs(:sleep_enabled?).returns(false)
+
+    elapsed = measure_elapsed do
+      get '/?sleep=3'
+    end
+    assert_response 200
+    assert_operator elapsed, :<, 3, 'When disabled sleep'
   end
 
   def test_health_action_inspectable_multiple_parameters
+    Ready::For::Migration::HealthActionInspectable.stubs(:sleep_enabled?).returns(true)
     Ready::For::Migration::HealthController.any_instance.stubs(:rand).returns(1)
     Ready::For::Migration::HealthActionInspectable.cache.write(:first_access_time, 120.seconds.before.to_time)
 

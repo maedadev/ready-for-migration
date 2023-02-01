@@ -9,6 +9,20 @@ module Ready
           @cache ||= ActiveSupport::Cache::MemoryStore.new
         end
 
+        def self.sleep_enabled?
+          return false if ENV['RFM_ENABLE_SLEEP'].nil?
+          b = [ false, 0,
+                "0", :"0",
+                "f", :f,
+                "F", :F,
+                "false", :false,
+                "FALSE", :FALSE,
+                "off", :off,
+                "OFF", :OFF,
+              ].include?(ENV['RFM_ENABLE_SLEEP'])
+          return !b
+        end
+
         def readiness
           if params.has_key?(:status)
             case
@@ -68,7 +82,7 @@ module Ready
             return unless status = get_status_value
             return unless value = get_sleep_value
 
-            sleep value
+            sleep(value) if Ready::For::Migration::HealthActionInspectable.sleep_enabled?
             head status
           end
 
@@ -89,7 +103,7 @@ module Ready
           def perform_inspection_with_sleep
             return unless value = get_sleep_value
 
-            sleep value
+            sleep(value) if Ready::For::Migration::HealthActionInspectable.sleep_enabled?
           end
 
       end

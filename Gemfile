@@ -6,6 +6,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 # development dependencies will be added by default to the :development group.
 gemspec
 
+gem 'rails', '~> 5.2.8'
+
 group :test do
   gem 'mocha'
 end
