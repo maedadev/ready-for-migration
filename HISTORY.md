@@ -1,4 +1,7 @@
 
+## 0.1.3
+* Disable sleep pattern by default #8
+
 ## 0.1.2
 * 503 Service Unavailable を応答させるための仕掛け #6
 
