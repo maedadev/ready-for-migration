@@ -1,4 +1,4 @@
-## master
+## 0.1.4
 * ZeitwerkはInitialiizers内でのオートロードをサポートしない
 
   ```
