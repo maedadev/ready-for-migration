@@ -1,3 +1,9 @@
+## master
+* ZeitwerkはInitialiizers内でのオートロードをサポートしない
+
+  ```
+  DEPRECATION WARNING: Initialization autoloaded the constant Ready::For::Migration::HealthActionInspectable.
+  ```
 
 ## 0.1.3
 * Disable sleep pattern by default #8
