@@ -7,6 +7,11 @@ module Ready
           require config.root.join('app/controllers/concerns/ready/for/migration/health_action_inspectable')
           Ready::For::Migration::HealthActionInspectable.cache.write(:first_access_time, Time.now)
         end
+
+        initializer 'ready-for-migration.initialize_logger' do
+          require_relative 'rails_rack_logger_extenstion'
+        end
+
       end
     end
   end
