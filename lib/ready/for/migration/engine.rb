@@ -9,7 +9,7 @@ module Ready
         end
 
         initializer 'ready-for-migration.initialize_logger' do
-          require_relative 'rails_rack_logger_extenstion'
+          require_relative 'rails_rack_logger_extention'
         end
 
       end
